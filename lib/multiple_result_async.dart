@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library;
 
-export 'src/multiple_result_async_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/future_to_result.dart';
+export 'src/next_future_result.dart';
+export 'src/next_result.dart';

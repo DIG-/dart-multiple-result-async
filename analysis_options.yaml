@@ -15,10 +15,33 @@ include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
-#     - camel_case_types
-
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_dynamic_calls
+    - avoid_print
+    - avoid_void_async
+    - cast_nullable_to_non_nullable
+    - deprecated_consistency
+    - directives_ordering
+    - discarded_futures
+    - no_runtimeType_toString
+    - noop_primitive_operations
+    - only_throw_errors
+    - prefer_single_quotes
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_fields
+    - prefer_final_in_for_each
+    - prefer_final_locals
+    - prefer_final_parameters
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - require_trailing_commas
+    - sort_constructors_first
+    - sort_pub_dependencies
+    - sort_unnamed_constructors_first
+    - unnecessary_lambdas
 # analyzer:
 #   exclude:
 #     - path/to/excluded/files/**
