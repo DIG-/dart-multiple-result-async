@@ -20,7 +20,7 @@ extension FutureToResult<T> on Future<T> {
   Future<Result<T, E>> toResult<U, E>({final bool useTryCatch = true}) {
     assert(
       T == U,
-      'The type of the Future must be the same as the type of the Result',
+      'The type of the Future must be the same as the type of the Result. T=$T, U=$U',
     );
     return useTryCatch
         ? _toResultWithTryCatch<U, E>()
