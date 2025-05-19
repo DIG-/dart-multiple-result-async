@@ -11,13 +11,19 @@ Future<String> alwaysFutureString(final String message) async => message;
 Future<String> alwaysFutureThrowsException() async =>
     throw const DefaultTestException();
 
-Future<Result<String, Exception>> alwaysResultString(
+Future<Result<String, Exception>> alwaysFutureResultString(
   final String message,
 ) async =>
-    alwaysFutureString(message).toResultOrError();
+    await alwaysFutureString(message).toResultOrError();
 
-Future<Result<String, Exception>> alwaysResultException() async =>
-    alwaysFutureThrowsException().toResultOrError();
+Future<Result<String, Exception>> alwaysFutureResultException() async =>
+    await alwaysFutureThrowsException().toResultOrError();
+
+Result<String, Exception> alwaysResultString(final String message) =>
+    Success<String, Exception>(message);
+
+Result<String, Exception> alwaysResultException() =>
+    const Error<String, Exception>(DefaultTestException());
 
 class DefaultTestException implements Exception {
   const DefaultTestException();
