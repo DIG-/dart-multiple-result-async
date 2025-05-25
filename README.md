@@ -1,39 +1,38 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# multiple_result_async
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+Provide mapping methods for [multiple_result](https://pub.dev/packages/multiple_result)'s `Result<T, E>`
+with asynchronous support/handling, and error (of type `E`) capture.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+## Install
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Just add `multiple_result_async` as dependency. This package does not replace `multiple_result`.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+### Wrapping a `Future<T>` to `Future<Result<T, E>>`
 ```dart
-const like = 'sample';
+final result = Future((){...}).toResultOrError<Exception>();
 ```
 
-## Additional information
+### Mapping a `Future<Result<T, E>>` to `Future<Result<U, E>>`
+```dart
+return getDataResult().next(
+    onSuccess: (T success) {
+        ...
+        return Success(processed_value);
+    },
+    onError: (E error) async {
+        ...
+        if (is_recoverable_error){
+            ...
+            return Success(recupered_error);
+        }
+        ...
+        return Error(propagated_error);
+    },
+);
+```
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## License
+
+`multiple_result_async` is available under the MIT license. See the LICENSE file for more info.

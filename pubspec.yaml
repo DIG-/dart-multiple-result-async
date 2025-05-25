@@ -1,7 +1,10 @@
 name: multiple_result_async
-description: A starting point for Dart libraries or applications.
+description: Provide methods to handle Result mapping and chaining with asynchronous operations.
 version: 0.0.1
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/DIG-/dart-multiple-result-async
+topics:
+  - result
+  - utility
 
 environment:
   sdk: ^3.0.0
