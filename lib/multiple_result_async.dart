@@ -1,6 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Provide methods to handle [Result<T, E>] mapping and chaining with asynchronous operations.
 library;
 
 export 'src/future_to_result.dart';
