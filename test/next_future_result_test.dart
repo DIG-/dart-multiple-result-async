@@ -14,64 +14,82 @@ void main() {
     });
 
     test('Success with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final value) =>
             Result.success(value.split('').reversed.join()),
       );
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
-      expect((result as Success<String, Exception>).success,
-          kDefaultTestString.split('').reversed.join());
+      expect(
+        (result as Success<String, Exception>).success,
+        kDefaultTestString.split('').reversed.join(),
+      );
     });
 
     test('Success with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final value) => Result.success(value.length),
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Success to Error with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) => const Result.error(AlternativeTestException()),
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Success to Error with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) => const Result.error(AlternativeTestException()),
       );
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
-      expect((result as Error<int, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<int, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error catching with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) => throw const AlternativeTestException(),
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error catching with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) => throw const AlternativeTestException(),
       );
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
-      expect((result as Error<int, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<int, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error propagation with same type', () async {
@@ -80,8 +98,10 @@ void main() {
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<DefaultTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<DefaultTestException>(),
+      );
     });
 
     test('Error propagation with other type', () async {
@@ -91,7 +111,9 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
       expect(
-          (result as Error<int, Exception>).error, isA<DefaultTestException>());
+        (result as Error<int, Exception>).error,
+        isA<DefaultTestException>(),
+      );
     });
 
     test('Error handling with same type', () async {
@@ -102,7 +124,9 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
       expect(
-          (result as Success<String, Exception>).success, kDefaultTestString);
+        (result as Success<String, Exception>).success,
+        kDefaultTestString,
+      );
     });
 
     test('Error handling with other type', () async {
@@ -112,8 +136,10 @@ void main() {
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Error catching and handling with same type', () async {
@@ -125,29 +151,36 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
       expect(
-          (result as Success<String, Exception>).success, kDefaultTestString);
+        (result as Success<String, Exception>).success,
+        kDefaultTestString,
+      );
     });
 
     test('Error catching and handling with other type', () async {
-      final resultFuture = alwaysFutureResultString(kAlternativeTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kAlternativeTestString).next<int>(
         onSuccess: (final _) => throw const AlternativeTestException(),
         onError: (final _) => const Result.success(kDefaultTestString.length),
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Error fallthrough with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) => throw DefaultTestError(),
       );
       expect(() async => await resultFuture, throwsA(isA<DefaultTestError>()));
     });
 
     test('Error fallthrough with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) => throw DefaultTestError(),
       );
       expect(() async => await resultFuture, throwsA(isA<DefaultTestError>()));
@@ -156,66 +189,84 @@ void main() {
 
   group('Future<Result<T,E>>.next<U>() async', () {
     test('Success with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final value) async =>
             Result.success(value.split('').reversed.join()),
       );
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
-      expect((result as Success<String, Exception>).success,
-          kDefaultTestString.split('').reversed.join());
+      expect(
+        (result as Success<String, Exception>).success,
+        kDefaultTestString.split('').reversed.join(),
+      );
     });
 
     test('Success with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final value) async => Result.success(value.length),
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Success to Error with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) async =>
             const Result.error(AlternativeTestException()),
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Success to Error with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) async =>
             const Result.error(AlternativeTestException()),
       );
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
-      expect((result as Error<int, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<int, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error catching with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) async => throw const AlternativeTestException(),
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error catching with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) async => throw const AlternativeTestException(),
       );
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
-      expect((result as Error<int, Exception>).error,
-          isA<AlternativeTestException>());
+      expect(
+        (result as Error<int, Exception>).error,
+        isA<AlternativeTestException>(),
+      );
     });
 
     test('Error propagation with same type', () async {
@@ -224,8 +275,10 @@ void main() {
       );
       final result = await resultFuture;
       expect(result, isA<Error<String, Exception>>());
-      expect((result as Error<String, Exception>).error,
-          isA<DefaultTestException>());
+      expect(
+        (result as Error<String, Exception>).error,
+        isA<DefaultTestException>(),
+      );
     });
 
     test('Error propagation with other type', () async {
@@ -235,7 +288,9 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Error<int, Exception>>());
       expect(
-          (result as Error<int, Exception>).error, isA<DefaultTestException>());
+        (result as Error<int, Exception>).error,
+        isA<DefaultTestException>(),
+      );
     });
 
     test('Error handling with same type', () async {
@@ -246,7 +301,9 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
       expect(
-          (result as Success<String, Exception>).success, kDefaultTestString);
+        (result as Success<String, Exception>).success,
+        kDefaultTestString,
+      );
     });
 
     test('Error handling with other type', () async {
@@ -257,8 +314,10 @@ void main() {
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Error catching and handling with same type', () async {
@@ -270,30 +329,37 @@ void main() {
       final result = await resultFuture;
       expect(result, isA<Success<String, Exception>>());
       expect(
-          (result as Success<String, Exception>).success, kDefaultTestString);
+        (result as Success<String, Exception>).success,
+        kDefaultTestString,
+      );
     });
 
     test('Error catching and handling with other type', () async {
-      final resultFuture = alwaysFutureResultString(kAlternativeTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kAlternativeTestString).next<int>(
         onSuccess: (final _) async => throw const AlternativeTestException(),
         onError: (final _) async =>
             const Result.success(kDefaultTestString.length),
       );
       final result = await resultFuture;
       expect(result, isA<Success<int, Exception>>());
-      expect((result as Success<int, Exception>).success,
-          kDefaultTestString.length);
+      expect(
+        (result as Success<int, Exception>).success,
+        kDefaultTestString.length,
+      );
     });
 
     test('Error fallthrough with same type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<String>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<String>(
         onSuccess: (final _) async => throw DefaultTestError(),
       );
       expect(() async => await resultFuture, throwsA(isA<DefaultTestError>()));
     });
 
     test('Error fallthrough with other type', () async {
-      final resultFuture = alwaysFutureResultString(kDefaultTestString).next<int>(
+      final resultFuture =
+          alwaysFutureResultString(kDefaultTestString).next<int>(
         onSuccess: (final _) async => throw DefaultTestError(),
       );
       expect(() async => await resultFuture, throwsA(isA<DefaultTestError>()));
