@@ -8,7 +8,7 @@ extension NextFutureResult<T, E> on Future<Result<T, E>> {
   /// - [onSuccess]: A function that takes a [T] and returns a [Result<U, E>], can be async.
   /// - [onError]: A function that takes an [E] and returns a [Result<U, E>], can be async.
   /// If the [onError] function is not provided, the [Result<T, E>] will be wrapped into an [Error<U, E>].
-  /// 
+  ///
   /// If the [Result<T, E>] is a [Success<T, E>], it will be mapped to a [Result<U, E>] using the [onSuccess] function.
   /// If [onSuccess] throws an error of type [E], it will be handled like an [Error<T, E>].
   /// If the [Result<T, E>] is an [Error<T, E>] (or if the [onSuccess] function had throwed error of type [E]):

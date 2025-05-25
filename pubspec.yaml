@@ -1,6 +1,6 @@
 name: multiple_result_async
 description: Provide methods to handle Result mapping and chaining with asynchronous operations.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/DIG-/dart-multiple-result-async
 topics:
   - result
